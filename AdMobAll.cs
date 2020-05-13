@@ -37,14 +37,19 @@ public class AdMobAll : MonoBehaviour
         this.bannerView.OnAdLoaded += this.HandleOnAdLoaded;
         // Called when an ad request failed to load.
         this.bannerView.OnAdFailedToLoad += this.HandleOnAdFailedToLoad;
+
+         addStatus.text = "RequestBanner";
     }
 
     public void ShowBannerAd()
     {
+        addStatus.text = "ShowBannerAd START";
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
         // Load the banner with the request.
         this.bannerView.LoadAd(request);
+
+        addStatus.text = "ShowBannerAd END";
     }
 
     public void HandleOnAdLoaded(object sender, EventArgs args)
@@ -79,17 +84,19 @@ public class AdMobAll : MonoBehaviour
 
         // Create an empty ad request.
         AdRequest request = new AdRequest.Builder().Build();
-        // Load the banner with the request.
-        this.bannerView.LoadAd(request);
+        // Load the interstitial with the request.
+        this.interstitial.LoadAd(request);
 
     }
 
     public void ShownIterstitialAd()
     {
+        addStatus.text = "ShownIterstitialAd";
         if (this.interstitial.IsLoaded())
         {
             this.interstitial.Show();
         }
+
     }
 
 
@@ -123,6 +130,7 @@ public class AdMobAll : MonoBehaviour
     #region RewardBasedAdcodeBase 
     public void RequestRewardBasedVideo()
     {
+        addStatus.text = "RequestRewardBasedVideo";
         // Get singleton reward based video ad reference.
         this.rewardBasedVideo = RewardBasedVideoAd.Instance;
 
@@ -190,6 +198,7 @@ public class AdMobAll : MonoBehaviour
 
     public void ShowRewardBasedVideo()
     {
+        addStatus.text = "ShowRewardBasedVideo";
         if (rewardBasedVideo.IsLoaded())
         {
             rewardBasedVideo.Show();
